@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CV – Flint Bruijn</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --paper: #f7f3eb;
+            --paper-dark: #ece5d7;
+            --ink: #26231f;
+            --muted: #706a61;
+            --brown: #744b2b;
+            --orange: #c87532;
+            --line: #d8d0c2;
+            --white: #fffdf8;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.65;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page {
+            max-width: 1080px;
+            margin: 0 auto;
+            background: var(--white);
+            min-height: 100vh;
+        }
+
+        /* =========================
+           NAVIGATIE
+        ========================= */
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(255,253,248,0.96);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .topbar-inner {
+            max-width: 1080px;
+            margin: auto;
+            padding: 16px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-family: Georgia, serif;
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .brand span {
+            color: var(--orange);
+        }
+
+        .nav {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .nav a {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .nav a:hover {
+            color: var(--orange);
+        }
+
+        .print-button {
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--ink);
+            padding: 9px 14px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .print-button:hover {
+            background: var(--paper);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            padding: 75px 60px 65px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 290px;
+            gap: 55px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--orange);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(55px, 8vw, 88px);
+            line-height: 0.95;
+            font-weight: normal;
+            letter-spacing: -3px;
+            margin-bottom: 24px;
+        }
+
+        .hero-text {
+            max-width: 640px;
+            color: var(--muted);
+            font-size: 18px;
+        }
+
+        .hero-text strong {
+            color: var(--ink);
+        }
+
+        .photo-wrap {
+            position: relative;
+        }
+
+        .profile-photo {
+            display: block;
+            width: 290px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 5px;
+            border: 1px solid var(--line);
+            box-shadow: 12px 12px 0 var(--paper-dark);
+            background: var(--paper-dark);
+        }
+
+        .photo-note {
+            font-family: Georgia, serif;
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        /* =========================
+           SECTIES
+        ========================= */
+
+        section {
+            padding: 65px 60px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .section-heading {
+            display: grid;
+            grid-template-columns: 190px 1fr;
+            gap: 40px;
+            margin-bottom: 38px;
+        }
+
+        .section-number {
+            color: var(--orange);
+            font-family: Georgia, serif;
+            font-size: 18px;
+        }
+
+        .section-heading h2 {
+            font-family: Georgia, serif;
+            font-size: 36px;
+            line-height: 1.15;
+            font-weight: normal;
+        }
+
+        .section-heading p {
+            margin-top: 8px;
+            color: var(--muted);
+        }
+
+        /* =========================
+           PROFIEL
+        ========================= */
+
+        .profile-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 45px;
+            margin-left: 230px;
+        }
+
+        .profile-columns p {
+            color: var(--muted);
+        }
+
+        .quote {
+            font-family: Georgia, serif;
+            font-size: 25px;
+            line-height: 1.4;
+            color: var(--brown);
+        }
+
+        /* =========================
+           TIMELINE
+        ========================= */
+
+        .timeline {
+            margin-left: 230px;
+            border-left: 1px solid var(--line);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0 0 35px 30px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -5px;
+            top: 5px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--orange);
+        }
+
+        .timeline-date {
+            font-size: 13px;
+            color: var(--orange);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item h3 {
+            font-family: Georgia, serif;
+            font-size: 23px;
+            font-weight: normal;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item p {
+            color: var(--muted);
+            max-width: 650px;
+        }
+
+        /* =========================
+           TALEN
+        ========================= */
+
+        .language-grid {
+            margin-left: 230px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border-top: 1px solid var(--line);
+            border-left: 1px solid var(--line);
+        }
+
+        .language {
+            padding: 18px 20px;
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .language strong {
+            display: block;
+            font-family: Georgia, serif;
+            font-size: 20px;
+            font-weight: normal;
+        }
+
+        .language span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* =========================
+           PASSIE / BEDRIJF
+        ========================= */
+
+        .passion-box {
+            margin-left: 230px;
+            background: var(--paper);
+            padding: 35px;
+            border-left: 5px solid var(--orange);
+        }
+
+        .passion-box h3 {
+            font-family: Georgia, serif;
+            font-size: 30px;
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+
+        .passion-box p {
+            color: var(--muted);
+            max-width: 700px;
+        }
+
+        .business-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--brown);
+            font-weight: bold;
+            border-bottom: 1px solid var(--brown);
+            padding-bottom: 2px;
+        }
+
+        .business-link:hover {
+            color: var(--orange);
+            border-color: var(--orange);
+        }
+
+        /* =========================
+           VAARDIGHEDEN
+        ========================= */
+
+        .skills-wrap {
+            margin-left: 230px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            border: 1px solid var(--line);
+            padding: 9px 14px;
+            background: var(--white);
+            color: var(--muted);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact-grid {
+            margin-left: 230px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+        }
+
+        .contact-item {
+            border-top: 1px solid var(--line);
+            padding-top: 16px;
+        }
+
+        .contact-item small {
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .contact-item a {
+            display: block;
+            margin-top: 6px;
+            font-size: 17px;
+            color: var(--brown);
+            word-break: break-word;
+        }
+
+        .contact-item a:hover {
+            color: var(--orange);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 30px 60px;
+            color: var(--muted);
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* =========================
+           MOBIEL
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .topbar-inner {
+                padding: 14px 20px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 50px 25px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-photo {
+                width: 100%;
+                max-width: 320px;
+                height: 370px;
+            }
+
+            section {
+                padding: 50px 25px;
+            }
+
+            .section-heading {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .profile-columns,
+            .timeline,
+            .language-grid,
+            .passion-box,
+            .skills-wrap,
+            .contact-grid {
+                margin-left: 0;
+            }
+
+            .profile-columns {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .language-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                padding: 25px;
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+
+        /* =========================
+           PRINTEN
+        ========================= */
+
+        @media print {
+
+            @page {
+                size: A4;
+                margin: 15mm;
+            }
+
+            html,
+            body {
+                background: white;
+                color: black;
+            }
+
+            body {
+                font-size: 11pt;
+            }
+
+            .page {
+                width: 100%;
+                max-width: none;
+            }
+
+            .topbar {
+                display: none;
+            }
+
+            .hero {
+                padding: 15px 0 30px;
+            }
+
+            section {
+                padding: 30px 0;
+                border-bottom: 1px solid #ccc;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr 210px;
+                gap: 30px;
+            }
+
+            .profile-photo {
+                width: 210px;
+                height: 250px;
+                box-shadow: none;
+            }
+
+            h1 {
+                font-size: 52px;
+            }
+
+            .hero-text {
+                font-size: 13pt;
+            }
+
+            .section-heading {
+                grid-template-columns: 130px 1fr;
+                gap: 25px;
+            }
+
+            .section-heading h2 {
+                font-size: 26px;
+            }
+
+            .profile-columns,
+            .timeline,
+            .language-grid,
+            .passion-box,
+            .skills-wrap,
+            .contact-grid {
+                margin-left: 155px;
+            }
+
+            .passion-box {
+                background: #f5f5f5;
+            }
+
+            .business-link {
+                color: black;
+            }
+
+            .skill {
+                background: white;
+                border-color: #bbb;
+            }
+
+            a {
+                color: black !important;
+                text-decoration: none;
+            }
+
+            footer {
+                padding: 20px 0;
+            }
+
+            section,
+            .timeline-item,
+            .passion-box,
+            .contact-item {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- NAVIGATIE -->
+    <div class="topbar">
+        <div class="topbar-inner">
+
+            <div class="brand">
+                Flint<span>.</span>
+            </div>
+
+            <div class="nav">
+                <a href="#over-mij">Over mij</a>
+                <a href="#opleiding">Opleiding</a>
+                <a href="#ervaring">Ervaring</a>
+                <a href="#talen">Talen</a>
+                <a href="#passie">Passie</a>
+                <a href="#contact">Contact</a>
+
+                <button class="print-button" onclick="window.print()">
+                    CV afdrukken
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- HERO -->
+    <header class="hero">
+
+        <div class="hero-grid">
+
+            <div>
+                <div class="eyebrow">
+                    Curriculum vitae
+                </div>
+
+                <h1>
+                    Flint<br>
+                    Bruijn
+                </h1>
+
+                <p class="hero-text">
+                    Ik ben <strong>13 jaar</strong> en zit op het
+                    <strong>Martinuscollege</strong> in klas G2A.
+                    Ik houd ervan om dingen te onderzoeken, nieuwe ideeën
+                    uit te werken en zelf projecten te starten.
+                </p>
+            </div>
+
+            <div class="photo-wrap">
+                <!--
+                    ZET HIER JE FOTO:
+                    noem de afbeelding "foto.jpg"
+                    en zet hem naast dit HTML-bestand.
+                -->
+                <img
+                    src="blob:https://martinus.magister.net/3f09c0b0-c8a9-485d-8484-385a12f1de90"
+                    alt="Foto van mij"
+                    class="profile-photo"
+                >
+
+                <div class="photo-note">
+                    Flint Bruijn · Enkhuizen
+                </div>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- OVER MIJ -->
+    <section id="over-mij">
+
+        <div class="section-heading">
+            <div class="section-number">01 / PROFIEL</div>
+
+            <div>
+                <h2>Over mij</h2>
+                <p>
+                    Een korte indruk van wie ik ben en waar ik mij mee bezig houd.
+                </p>
+            </div>
+        </div>
+
+        <div class="profile-columns">
+
+            <div>
+                <p>
+                    Mijn naam is Flint Bruijn. Ik ben geboren op
+                    21 juni 2013 in Hoorn en woon in Enkhuizen.
+                    Ik zit op het Martinuscollege en volg daar gymnasium.
+                </p>
+            </div>
+
+            <div>
+                <div class="quote">
+                    "Ik vind het leuk om iets niet alleen te bedenken,
+                    maar het ook echt te maken."
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- OPLEIDING -->
+    <section id="opleiding">
+
+        <div class="section-heading">
+            <div class="section-number">02 / OPLEIDING</div>
+
+            <div>
+                <h2>Opleiding</h2>
+                <p>
+                    Mijn huidige school en opleiding.
+                </p>
+            </div>
+        </div>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-date">
+                    HUIDIG
+                </div>
+
+                <h3>Martinuscollege</h3>
+
+                <p>
+                    Gymnasium · klas G2A
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ERVARING -->
+    <section id="ervaring">
+
+        <div class="section-heading">
+            <div class="section-number">03 / ERVARING</div>
+
+            <div>
+                <h2>Ervaring</h2>
+                <p>
+                    Ervaring die ik buiten het gewone schoolwerk heb opgedaan.
+                </p>
+            </div>
+        </div>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-date">
+                    25 UUR
+                </div>
+
+                <h3>Maatschappelijke stage · Griffie Hoogkarspel</h3>
+
+                <p>
+                    Maatschappelijke stage van 25 uur bij de griffie
+                    in Hoogkarspel, binnen West-Friesland.
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-date">
+                    EIGEN PROJECT
+                </div>
+
+                <h3>Bruijn-Pindakaas</h3>
+
+                <p>
+                    Ik maak en verkoop mijn eigen pindakaas.
+                    Met mijn eigen bedrijf houd ik mij bezig met
+                    het maken van producten en het verkopen ervan.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TALEN -->
+    <section id="talen">
+
+        <div class="section-heading">
+            <div class="section-number">04 / TALEN</div>
+
+            <div>
+                <h2>Talen</h2>
+                <p>
+                    Talen die ik beheers en talen die ik aan het leren ben.
+                </p>
+            </div>
+        </div>
+
+        <div class="language-grid">
+
+            <div class="language">
+                <strong>Nederlands</strong>
+                <span>Beheerst</span>
+            </div>
+
+            <div class="language">
+                <strong>Engels</strong>
+                <span>Beheerst</span>
+            </div>
+
+            <div class="language">
+                <strong>Frans</strong>
+                <span>Aan het leren</span>
+            </div>
+
+            <div class="language">
+                <strong>Duits</strong>
+                <span>Aan het leren</span>
+            </div>
+
+            <div class="language">
+                <strong>Grieks</strong>
+                <span>Aan het leren</span>
+            </div>
+
+            <div class="language">
+                <strong>Latijn</strong>
+                <span>Aan het leren</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PASSIE -->
+    <section id="passie">
+
+        <div class="section-heading">
+            <div class="section-number">05 / PASSIE</div>
+
+            <div>
+                <h2>Wat mij interesseert</h2>
+                <p>
+                    De dingen waar ik uit mezelf tijd in steek.
+                </p>
+            </div>
+        </div>
+
+        <div class="passion-box">
+
+            <h3>Onderzoeken & ondernemen</h3>
+
+            <p>
+                Een van mijn hobby's is onderzoek doen. Ik vind het
+                interessant om dingen uit te zoeken en te ontdekken
+                hoe iets werkt.
+                Daarnaast maak en verkoop ik mijn eigen pindakaas.
+                Dat doe ik onder mijn eigen bedrijf
+                <strong>Bruijn-Pindakaas</strong>.
+            </p>
+
+            <a
+                href="https://bruijn-pindakaas.webnode.nl/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="business-link"
+            >
+                Bekijk Bruijn-Pindakaas →
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- VAARDIGHEDEN -->
+    <section>
+
+        <div class="section-heading">
+            <div class="section-number">06 / VAARDIGHEDEN</div>
+
+            <div>
+                <h2>Vaardigheden</h2>
+                <p>
+                    Dingen waar ik ervaring mee heb.
+                </p>
+            </div>
+        </div>
+
+        <div class="skills-wrap">
+
+            <div class="skill">Onderzoek doen</div>
+            <div class="skill">Ondernemen</div>
+            <div class="skill">Producten maken</div>
+            <div class="skill">Producten verkopen</div>
+            <div class="skill">HTML & CSS</div>
+            <div class="skill">Digitale vaardigheden</div>
+            <div class="skill">Creativiteit</div>
+            <div class="skill">Zelfstandig werken</div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+
+        <div class="section-heading">
+            <div class="section-number">07 / CONTACT</div>
+
+            <div>
+                <h2>Contact</h2>
+                <p>
+                    Via deze adressen ben ik bereikbaar.
+                </p>
+            </div>
+        </div>
+
+        <div class="contact-grid">
+
+            <div class="contact-item">
+                <small>School e-mail</small>
+
+                <a href="mailto:143312@martinuscollege.nl">
+                    143312@martinuscollege.nl
+                </a>
+            </div>
+
+            <div class="contact-item">
+                <small>Persoonlijke e-mail</small>
+
+                <a href="mailto:bruijnpindakaas@outlook.com">
+                    bruijnpindakaas@outlook.com
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <div>Flint Bruijn · CV</div>
+        <div>Enkhuizen · Martinuscollege</div>
+    </footer>
+
+</div>
+
+</body>
+</html>
